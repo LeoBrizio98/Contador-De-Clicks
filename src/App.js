@@ -1,23 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import kChingLogo from './imagenes/LogoBlanco.png';
+import Boton from './components/boton.js';
+import Contador from './components/contador.js';
+import { useState } from 'react';
 
 function App() {
+
+  const [numClicks, setNumClicks] = useState(0);
+
+  const drivesClick = () => {
+    setNumClicks(numClicks + 1);
+  };
+
+  const resetCounter = () => {
+    setNumClicks(0);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='logo-contenedor'>
+        <img
+        className='kching-logo'
+        src={kChingLogo}
+        alt='Logo de K-Ching' />
+      </div>
+      <div className='container-main'>
+        <Contador
+        numClicks={numClicks} />
+        <Boton
+          text='Click'
+          isClickButton={true}
+          driveClick={drivesClick} />
+        <Boton
+          text='Reiniciar'
+          isClickButton={false}
+          driveClick={resetCounter} />
+      </div>
     </div>
   );
 }
